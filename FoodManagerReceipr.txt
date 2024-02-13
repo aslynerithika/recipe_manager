@@ -1,0 +1,904 @@
+CREATE TABLE Types
+(Typ_ID TEXT, FoodType TEXT,
+PRIMARY KEY (Typ_ID));
+
+CREATE TABLE Sub_Category
+(SubCat_ID TEXT, SubCat TEXT, SubCat_Pic TEXT,
+PRIMARY KEY (SubCat_ID));
+
+CREATE TABLE UOM
+(UOM_ID TEXT, Name TEXT, Abbv TEXT,
+PRIMARY KEY (UOM_ID));
+
+CREATE TABLE Counter
+(C_ID INT, T_ID INT, S_ID INT, U_ID INT, R_ID INT);
+
+CREATE TABLE Receipe
+(Rcp_ID TEXT, Status TEXT, Created_Date TEXT, RecipeName TEXT, Cus_ID TEXT, Typ_ID TEXT, SubCat_ID TEXT,
+Yield TEXT, CookTime TEXT, Rating INT, NutritionInfo TEXT, receipeInfo TEXT, Steps INT, Pic TEXT,
+PRIMARY KEY (Rcp_ID),
+FOREIGN KEY (Cus_ID) REFERENCES Cuisines(Cus_ID),
+FOREIGN KEY (Typ_ID) REFERENCES Types(Typ_ID),
+FOREIGN KEY (SubCat_ID) REFERENCES Sub_Category(SubCat_ID));
+
+---------
+
+INSERT INTO Cuisines
+(Cus_ID, CuisineName)
+VALUES
+('C02', 'ITALIAN');
+
+INSERT INTO Cuisines
+(Cus_ID, CuisineName)
+VALUES
+('C03', 'INDIAN');
+
+INSERT INTO Cuisines
+(Cus_ID, CuisineName)
+VALUES
+('C04', 'CHINESE');
+
+INSERT INTO Cuisines
+(Cus_ID, CuisineName)
+VALUES
+('C05', 'JAPANESE');
+
+
+INSERT INTO Types
+(Typ_ID, FoodType)
+VALUES
+('T01', 'VEG');
+
+INSERT INTO Types
+(Typ_ID, FoodType)
+VALUES
+('T02', 'VEGAN');
+
+INSERT INTO Types
+(Typ_ID, FoodType)
+VALUES
+('T03', 'NONVEG');
+
+INSERT INTO Types
+(Typ_ID, FoodType)
+VALUES
+('T04', 'DESSERTS');
+
+INSERT INTO Types
+(Typ_ID, FoodType)
+VALUES
+('T05', 'COCKTAILS');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST01', 'Chicken', 'chicken.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST02', 'Mutton', 'mutton.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST03', 'Lamb', 'lamb.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST04', 'Beef', 'beef.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST05', 'Seafoof', 'seafood.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST06', 'Pork', 'pork.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST07', 'Veg', 'veg.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST08', 'Vegan', 'vegan.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST09', 'Desserts', 'desserts.jpg');
+
+INSERT INTO Sub_Category
+(SubCat_ID, SubCat, SubCat_Pic)
+VALUES
+('ST10', 'Cocktails', 'cocktails.jpg');
+
+INSERT INTO UOM
+(UOM_ID, Name, Abbv)
+VALUES
+('UOM1', 'Gram', 'Grm');
+
+INSERT INTO UOM
+(UOM_ID, Name, Abbv)
+VALUES
+('UOM2', 'Liter', 'Lit');
+
+INSERT INTO UOM
+(UOM_ID, Name, Abbv)
+VALUES
+('UOM3', 'Milliliter', 'Mil');
+
+INSERT INTO UOM
+(UOM_ID, Name, Abbv)
+VALUES
+('UOM4', 'Tablespoon', 'Tbsb');
+
+INSERT INTO UOM
+(UOM_ID, Name, Abbv)
+VALUES
+('UOM5', 'Teaspoon', 'Tsp');
+
+INSERT INTO UOM
+(UOM_ID, Name, Abbv)
+VALUES
+('UOM6', 'Pieces', 'Pcs');
+
+INSERT INTO UOM
+(UOM_ID, Name, Abbv)
+VALUES
+('UOM7', 'Sprig', 'Spg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP01', 'Active', '2022/11/24', 'Chicken with tarragon cream sauce', 
+'C01', 'T03', 'ST01', '4', '30 mins', 4, '233', 'Chicken with creamy tarragon sauce.', 
+7, 'Chicken with tarragon cream sauce.jpg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP02', 'Active', '2022/11/25', 'Baked sea bream with garlic and rosemary', 
+'C01', 'T03', 'ST05', '2', '20 mins', 3, '229', 'Roasted garlic, rosemary, white wine all enhance this firm white fish and its ready in ten minutes.', 
+6, 'baked sea bream with garlic and rosemary.jpg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP03', 'Active', '2022/11/25', 'Carpet bag steak with potatoes and black olives', 
+'C01', 'T03', 'ST04', '4', '40 mins', 5, '234', 'Pocket cut steak', 
+10, 'Carpet bag steak with potatoes.jpg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP04', 'Active', '2022/11/25', 'Griddled pork with apple salad', 
+'C01', 'T03', 'ST06', '1', '30 mins', 5, '366', 'Griddled pork with apple salad', 
+4, 'Grilled pork with apple salad.jpg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP05', 'Active', '2022/11/25', 'Cawl', 
+'C01', 'T03', 'ST03', '4', '30 mins', 4, '560', 'Cawl is a Welsh stew thats wonderfully comforting and best made the day before serving.', 
+4, 'cawl.jpg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP06', 'Active', '2022/12/01', 'Beetroot carpaccio with goats cheese and walnuts', 
+'C01', 'T01', 'ST07', '4', '10 mins', 3, '245', 'Thin slices of sweet, earthy beetroot are slicked with a mustardy dressing and topped with tangy goats cheese.', 
+2, 'beetroot_carpaccio_.jpg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP07', 'Active', '2022/12/01', 'Slow cooker vegetarian hotpot', 
+'C01', 'T02', 'ST08', '4', '3 hours', 5, '264', 'This slow-cooker vegetarian stew with fluffy dumplings is a cheap and easy recipe. To make it vegan, use vegetable suet in the dumplings instead of butter and omit the pesto.', 
+7, 'slow cooker vegetarian hotpot.jpg');
+
+INSERT INTO Receipe
+(Rcp_ID, Status, Created_Date, RecipeName, Cus_ID, Typ_ID, SubCat_ID,
+Yield, CookTime, Rating, NutritionInfo, receipeInfo, Steps, Pic)
+VALUES
+('RCP08', 'Active', '2022/12/01', 'Chicken arrabiata', 
+'C02', 'T03', 'ST01', '4', '30 mins', 5, '508', 'This simple, delicious chicken arrabiata is easy for even novice cooks to prepare and good for those on a budget too.', 
+5, 'chicken_arrabiata.jpg');
+
+
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP01', '1', 'Preheat the oven to 200C/400F/Gas 6.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP01', '2', 'In a roasting tin, brown the chicken breasts in a little oil. Season both sides, turn skin side up and pour over the honey.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP01', '3', 'Roast until cooked through - about 20 minutes. Remove the chicken from the pan and keep warm while you make the sauce.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP01', '4', 'Pour off any excess fat, add the wine and bring to the boil, scraping to make sure you include any of the juices from the chicken. Reduce until your left with a couple of tablespoons of richly flavoured liquid.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP01', '5', 'Add the stock and the sprigs of tarragon, bring to the boil and reduce by a third.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP01', '6', 'Stir in the cream, bring to the boil and allow to reduce a little before removing the sprig of tarragon and adding the fresh chopped herb.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP01', '7', 'Adjust the seasoning and serve spooned over the chicken.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP02', '1', 'Preheat the oven to 220C/430F/Gas 7. Using a sharp, flexible knife, remove the fillets from the sea bream (or ask your fishmonger to do this for you).');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP02', '2', 'Place a large piece of aluminium foil, about 60cm/24in long, onto a work surface and cover with a layer of parchment paper almost the same size. Fold over the edges so that the foil and parchment are secured together.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP02', '3', 'Place the fillets onto the parchment paper and scatter over the roasted garlic cloves (squeeze them gently to release the soft insides as you do so). Crumble over the dried chilli and scatter over some rosemary leaves. Season with sea salt and pour over the wine. Drizzle over the olive oil.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP02', '4', 'Seal the parchment paper and foil around the fish. Start at the ends, rolling them inwards to ensure the ends are properly sealed, then crimp the sides to create a pasty-shaped parcel. The parcel should be tightly sealed so that the fish steams as it cooks without any steam escaping.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP02', '5', 'Place the fish in a roasting tray and roast for 8-10 minutes.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP02', '6', 'When cooked, remove from the oven and place onto a large serving plate. Carefully undo the foil and parchment, folding back the sides. To serve, sprinkle over some chopped fresh parsley and squeeze over fresh lemon juice to taste.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '1', 'Slit the steaks to make a pouch, stuff with a couple of wet oysters and then wrap around two pieces of pancetta or streaky bacon.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '2', 'Heat 50g of butter in a heavy frying pan, over a medium heat and put in the steaks.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '3', 'For medium-rare, cook for roughly 3 minutes on each side, then remove from the pan.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '4', 'Take the pan off the heat, pour in the reserved oyster water and scrape any bits from the bottom to the surface.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '5', 'Finally, pour the resulting liquid over the steaks.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '6', 'To make the potatoes pre heat the oven to 190C/375F/ Gas 5.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '7', 'Warm the olive oil in a heavy casserole dish over a medium heat.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '8', 'Add the potatoes, tomatoes, onions, garlic cloves, thyme and sage and bring to the boil.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '9', 'Season well and simmer for 8-10 minutes, then cover and cook in the oven for half an hour, or until the potatoes are cooked through (do not stir as this will break up the vegetables).');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP03', '10', 'Allow to cool slightly, then add the olives and parsley. Finally, serve with the carpet bag steaks.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP04', '1', 'Griddle the pork chop in a hot griddle pan for 3-4 minutes on each side or until cooked through. Remove from the pan and leave to rest for five minutes.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP04', '2', 'Meanwhile, mix together the apple, cheese, raisins and parsley leaves.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP04', '3', 'Cut the pork into slices and mix with the apple and cheese mixture.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP04', '4', 'Dress with the vinegar, olive oil and sesame seeds and serve.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP05', '1', 'Put the lamb into a large pan and pour over the stock. Bring to the boil, then reduce the heat and simmer for 1 hour.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP05', '2', 'Add the vegetables and cook for a further hour. Remove from the heat, cover and set aside to cool. Put in the fridge overnight.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP05', '3', 'When you are ready to serve, return the stew to the boil and cook for 15 minutes, or until completely heated through.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP05', '4', 'Spoon the cawl into serving bowls and serve with crusty bread and Welsh cheese.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP06', '1', 'Whisk the oil, mustard, vinegar and sugar together in a small bowl and season well with salt and pepper.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP06', '2', 'Fan the beetroot slices out over small plates and drizzle over the mustard dressing. Scatter over the goats’ cheese and walnuts and serve.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP07', '1', 'Heat the oil in a large, non-stick frying pan over a medium heat. Add the vegetables, in batches if necessary, and fry for 4–5 minutes, stirring regularly, until lightly browned all over. Season with salt and pepper.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP07', '2', 'Transfer the vegetables to the slow cooker, sprinkle over the flour and stir well. Add the chopped tomatoes, tomato purée, chilli flakes and pesto, if using, and stir again. Pour over the stock and stir. Cover and cook on high for 4 hours.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP07', '3', 'After the hotpot has been cooking for 3½ hours, make the dumplings. Put the flour in a large mixing bowl and season with salt and pepper.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP07', '4', 'Coarsely grate one-quarter of the frozen butter into the flour. Toss the mixture to coat the butter lightly in the flour. Add the remaining butter in three more batches, grating and tossing it in the same way. This should prevent the dumpling dough from clumping and yield light, fluffy dumplings.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP07', '5', 'Stir in enough cold water to bring the mixture together as a soft, squidy dough. Divide into 12 equally sized pieces and roll each into a ball.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP07', '6', 'Remove the lid from the slow cooker, stir in the spinach until wilted, then arrange the dumplings gently on top. Replace the lid and continue to cook on high for a further 25–30 minutes, or until the dumplings are puffed up and fluffy.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP07', '7', 'Spoon the hotpot onto serving plates with the dumplings on top.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP08', '1', 'Season the chicken all over with salt and pepper. Heat 2 tablespoons of the oil in a heavy-bottomed frying pan. Add the chicken breasts and fry over a medium–high heat until just golden brown on the outside – they will cook through later. Lift from the pan onto a plate to catch any juices.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP08', '2', 'Mix the garlic and parsley together in a small bowl. Add the rest of the oil to the pan with the garlic and parsley mixture and chilli flakes. Turn the heat down and sizzle together for about 30 seconds until really fragrant, but do not let the garlic brown. Quickly mix in the tomatoes and sugar. Quarter fill each can with water to rinse out the last of the tomato sauce and tip this all into the pan too.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP08', '3', 'Squish the chicken breasts back down into the sauce and simmer gently for 8–10 minutes, turning the chicken over halfway through. Check the chicken is cooked through and lift from the sauce onto a chopping board. Cook the sauce for about 10 minutes until it is thick and the top is glistening with oil. Taste to see if it needs more seasoning and keep warm. Slice the chicken breasts and return to the sauce.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP08', '4', 'Meanwhile, bring a large saucepan of water to the boil. Tip the pasta into the boiling water and cook for 9–11 minutes or until cooked to your liking. Drain the pasta thoroughly and combine with the sauce.');
+
+INSERT INTO PrepareSteps
+(Rcp_ID, Step, Preparation_Details)
+VALUES
+('RCP08', '5', '5.	To serve, scatter over some parsley, if using, and top with Parmesan.');
+
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM6', '4', 'Chiken breast');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM1', '450', 'Scaled and gutted sea bream');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM6', '6', 'Cloves of roasted garlic');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM6', '1', 'Dried chilli');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM7', '2', 'Rosemary');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM5', '1', 'Salt');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM4', '2', 'Dry white wine');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM3', '2', 'Extra virgin olive oil');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP02', 'UOM6', '1', 'Quartered lemon');
+
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM5', '1', 'Honey');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM6', '1', 'Tbsb');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM5', '1', 'Salt');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM5', '1', 'Black pepper');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM3', '75', 'Medium dry white wine');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM6', '150', 'Chiken stock');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM3', '150', 'Double cream');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM4', '2', 'Chopped tarragon');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP01', 'UOM6', '150', 'Chiken stock');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM4', '2', 'Extra virgin olive oil');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM5', '1', 'Dijon mustard');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM5', '2', 'Red wine vinegar');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM5', '1', 'Caster sugar');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM1', '200', 'Cooked beetroot');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM1', '80', 'Goats cheese');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM1', '50', 'Walnuts');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM5', '1', 'Salt');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP06', 'UOM5', '1', 'Ground black pepper');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM4', '2', 'Sunflower oil');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM6', '1', 'Butternut squash');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM6', '2', 'Onions');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM6', '3', 'Carrots');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM6', '2', 'Parsnips');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM4', '2', 'Plain flour');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM1', '400', 'Chopped tomatoes');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM4', '2', 'Tomato puree');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM5', '1/2', 'Dried chilli flakes');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM4', '3', 'Pesto');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM3', '350', 'Hot vegetable stock');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM1', '100', 'Young spinach leaves');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM5', '1', 'Salt');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM5', '1', 'Black pepper');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM1', '200', 'Self-raising flour');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM1', '75', 'Frozen butter');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP07', 'UOM3', '125', 'Cold water');
+
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM6', '2', 'Chicken breasts');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM4', '4', 'Olive oil');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM6', '4', 'Garlic cloves');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM6', '1/2', 'Flatleaf parsley');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM5', '1', 'Chilli flakes');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM1', '400', 'Chopped tomatoes');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM4', '1', 'Caster sugar');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM1', '400', 'Penne pasta');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM5', '1', 'Salt');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM5', '1', 'Black pepper');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP08', 'UOM1', '15', 'Parmesan');
+
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM6', '4', 'Fillet steaks');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM6', '8', 'Slices of pancetta');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM6', '8', 'Oysters');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM3', '300', 'Olive oil');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM1', '400', 'Potato chunks');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM1', '200', 'Tomato chunks');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM1', '200', 'Small onions');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM6', '2', 'Garlic cloves');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM7', '2', 'Thyme');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM7', '2', 'Sage');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM1', '60', 'Pitted black olives');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP03', 'UOM1', '60', 'Parsley');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM6', '1', 'Pork chop');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM1', '1/2', 'Cored and chopped apple');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM1', '25', 'Gradted cheddar cheese');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM1', '25', 'Raisins');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM4', '3', 'Parsley leaves');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM4', '1', 'White wine vinegar');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM4', '1', 'Olive oil');
+
+INSERT INTO Ingredients
+(Rcp_ID, UOM_ID, OUM, Items)
+VALUES
+('RCP04', 'UOM5', '1', 'Sesame seeds');
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----
+
+CREATE TABLE Ingredients
+(Rcp_ID TEXT, UOM_ID TEXT, OUM TEXT, Items TEXT,
+FOREIGN KEY (Rcp_ID) REFERENCES Receipe(Rcp_ID),
+FOREIGN KEY (UOM_ID) REFERENCES UOM(UOM_ID));
+
+
+DELETE FROM Receipe WHERE Rcp_ID='RCP09';
+-- DELETE FROM PrepareSteps WHERE Rcp_ID='RCP09';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

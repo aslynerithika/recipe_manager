@@ -1,0 +1,106 @@
+
+            if (rdr.HasRows)
+            { 
+
+            int idx = 0;
+            try
+            {
+
+                    while (rdr.Read())
+                    {
+                        //if (!rdr.IsDBNull(2))
+                        if (idx <cnt)
+                        {
+                            //MessageBox.Show(idx.ToString());
+                            switch (idx)
+                            {
+                                case 0:
+                                    label1.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 1:
+                                    label2.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 2:
+                                    label3.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 3:
+                                    label4.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 4:
+                                    label5.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 5:
+                                    label6.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 6:
+                                    label7.Text = rdr["Prepration_Details"].ToString();
+                                    break;
+                                case 7:
+                                    label8.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 8:
+                                    label9.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                                case 9:
+                                    label10.Text = rdr["Preparation_Details"].ToString();
+                                    break;
+                            }
+                            idx++;
+                        }
+                    }
+            }
+            catch (Exception ex)
+            {
+                //Print error message
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                //Close data reader object and database connection
+                if (rdr != null)
+                    rdr.Close();
+
+                if (ARSqlconn.State == ConnectionState.Open)
+                   ARSqlconn.Close();
+            }
+            }
+
+
+
+// List Box
+            lBxRcpnam.Items.Clear();
+            ARSqlconn.Open();
+            SQLiteCommand command = new SQLiteCommand(ARSqlconn);
+            command.CommandText = "select RecipeName from Receipe ORDER BY RecipeName ASC";
+            command.ExecuteNonQuery();
+
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                lBxRcpnam.Items.Add(reader["RecipeName"]);
+            }
+            ARSqlconn.Close();
+
+
+
+public void msgb()
+        {
+            if (frmFdMgr.CSN == "1") lblcus.Text = "ENGLISH";
+            else if (frmFdMgr.CSN == "2") lblcus.Text = "INDIAN";
+            else if (frmFdMgr.CSN == "3") lblcus.Text = "ITALIAN";
+            else if (frmFdMgr.CSN == "4") lblcus.Text = "CHINESE";
+            else if (frmFdMgr.CSN == "5") lblcus.Text = "JAPANESE";
+            else if (frmFdMgr.CSN == "6") lblcus.Text = "DRINKS";
+
+            if (frmFdMgr.CTG == "1") lblCat.Text = "NON VEG";
+            else if (frmFdMgr.CTG == "2") lblCat.Text = "VEG";
+            else if (frmFdMgr.CTG == "3") lblCat.Text = "VEGAN";
+            else if (frmFdMgr.CTG == "4") lblCat.Text = "DESSERT";
+
+            if (frmFdMgr.TPY == "1") lbltyp.Text = "CHICKEN";
+            else if (frmFdMgr.TPY == "2") lbltyp.Text = "BEEF";
+            else if (frmFdMgr.TPY == "3") lbltyp.Text = "PORK";
+            else if (frmFdMgr.TPY == "4") lbltyp.Text = "LAMB";
+            else if (frmFdMgr.TPY == "5") lbltyp.Text = "SEAFOOD";
+        }

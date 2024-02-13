@@ -1,0 +1,137 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SQLite;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
+
+namespace FoodManagerReceipr
+{
+    public partial class frmDspRcp : Form
+    {
+
+        public string dbfile = "URI=file:FoodManagerReceipe.db";
+        public SQLiteConnection ARSqlconn;
+        public SQLiteCommand ARCmd;
+        public SQLiteDataReader ARDataReader;
+        public SQLiteDataAdapter ARDap;
+        public DataTable ARTbl;
+
+
+        public frmDspRcp()
+        {
+            InitializeComponent();
+            ARSqlconn = new SQLiteConnection(dbfile);
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void frmDspRcp_Load(object sender, EventArgs e)
+        {
+            msgb();
+            FillRecpNamGrd();
+        }
+
+        public void FillRecpNamGrd()
+        {
+            // Connect to Member table and fetch all members details 
+            ARSqlconn.Open();
+            ARDap = new SQLiteDataAdapter("select * from Receipe", ARSqlconn);
+            ARSqlconn.Close();
+            SQLiteCommandBuilder ARCdB = new SQLiteCommandBuilder(ARDap);
+            ARTbl = new DataTable();
+            ARDap.Fill(ARTbl);
+            dGWRcpNam.DataSource = ARTbl;
+        }
+
+        //On double click - Display the Receipe details
+
+
+        public void msgb()
+        {
+            //MessageBox.Show("Main Menu selected was " + frmFdMgr.MNU);
+            //MessageBox.Show(" Cuisine selected was " + frmFdMgr.CSN);
+
+            if (frmFdMgr.CSN == "1")
+            {
+                lblcus.Text = "ENGLISH";
+            }
+            else if (frmFdMgr.CSN == "2")
+            {
+                lblcus.Text = "INDIAN";
+            }
+            else if (frmFdMgr.CSN == "3")
+            {
+                lblcus.Text = "ITALIAN";
+            }
+            else if (frmFdMgr.CSN == "4")
+            {
+                lblcus.Text = "CHINESE";
+            }
+            else if (frmFdMgr.CSN == "5")
+            {
+                lblcus.Text = "JAPANESE";
+            }
+            else if (frmFdMgr.CSN == "6")
+            {
+                lblcus.Text = "DRINKS";
+            }
+
+        }
+
+        int RwId;
+        private void dGWRcpNam_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // When double click the row in the Grid table it should fetch the values in the text box
+
+            RwId = e.RowIndex;
+            DataGridViewRow RecpRowId = dGWRcpNam.Rows[RwId];
+            //File the textbox / label box and radio button values with the row selected
+            lblRnm.Text = RecpRowId.Cells[3].Value.ToString().Trim();
+            // Get Cuisine name
+            //Create a SQL Query to insert data into SQLite DB's
+            string Cui = RecpRowId.Cells[4].Value.ToString().Trim();
+            string Cta = RecpRowId.Cells[5].Value.ToString().Trim();
+            string Tpy = RecpRowId.Cells[6].Value.ToString().Trim();
+            ARSqlconn.Open();
+            ARCmd = new SQLiteCommand(ARSqlconn);
+            ARCmd.CommandText = "SELECT CuisineName FROM Cuisines WHERE Cuisines.Cus_ID = @CiD";
+            ARCmd.Parameters.AddWithValue("@CiD", Cui);
+            ARCmd.Prepare();
+            ARCmd.ExecuteNonQuery();
+            lblCui.Text = (string)ARCmd.ExecuteScalar();
+
+            ARCmd.CommandText = "SELECT FoodType FROM Types WHERE Types.Typ_ID = @TiD";
+            ARCmd.Parameters.AddWithValue("@TiD", Cta);
+            ARCmd.Prepare();
+            ARCmd.ExecuteNonQuery();
+            lblCatg.Text = (string)ARCmd.ExecuteScalar();
+
+            ARCmd.CommandText = "SELECT SubCat FROM Sub_Category WHERE Sub_Category.SubCat_ID = @SiD";
+            ARCmd.Parameters.AddWithValue("@SiD", Tpy);
+            ARCmd.Prepare();
+            ARCmd.ExecuteNonQuery();
+            lblTp.Text = (string)ARCmd.ExecuteScalar();
+
+            //lblTp.Text = RecpRowId.Cells[6].Value.ToString().Trim();
+            lblCal.Text = RecpRowId.Cells[10].Value.ToString().Trim();
+            lblYld.Text = RecpRowId.Cells[7].Value.ToString().Trim();
+            lblCt.Text = RecpRowId.Cells[8].Value.ToString().Trim();
+            lblRt.Text = RecpRowId.Cells[9].Value.ToString().Trim();
+            lblRI.Text = RecpRowId.Cells[11].Value.ToString().Trim();
+
+            pBxRcp.ImageLocation = @"D:\SHU\FoodManagerReceipr\data resorces\" + RecpRowId.Cells[13].Value.ToString().Trim();
+
+            ARSqlconn.Close();
+        }
+
+
+    }
+}
